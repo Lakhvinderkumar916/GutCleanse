@@ -1,0 +1,375 @@
+﻿@using System.Web
+    @model Gut_Cleanse.Model.ProgramViewModel
+
+<style>
+    .programDescriptionLength p {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 6; /* number of lines to show */
+        line-clamp: 6;
+        -webkit-box-orient: vertical;
+    }
+
+    .programDLength h4 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .programDescriptionLength h4 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+
+    .programNameLength h2 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        line-clamp: ;
+        -webkit-box-orient: vertical;
+    }
+
+    .programNameLength h3 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+
+
+    .programDescriptionLength1{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* number of lines to show */
+        line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+
+    .programDescriptionLength h2 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+</style>
+
+<div>
+    <div class="entry-banner entry-banner-after  bg-common bgoneonone ">
+        <div class="inner-page-banner breadcrumbs-off">
+            <div class="container">
+                <div class="entry-banner-content breadcrumbs-area">
+                    <h1>1:1 Gut Reset Revolution</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="about-area pt-100 pb-100" id="aboutus">
+        <div class="container">
+            <div class="row">
+                @if (Model.ProgramDetail != null && Model.ProgramDetail.Any())
+                {
+                    var programDetail = Model.ProgramDetail.FirstOrDefault(pd => pd.Id == 1); // Filter by Id == 1
+                    if (programDetail != null)
+                    {
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="about-left pos-rel mb-30 aos-init" data-aos="fade-up">
+                                <div class="about-author d-flex align-items-center">
+                                    <div class="about-author-Image mt-2">
+                                        <img src="@programDetail.ImageUrl" alt="Program Image" class="img-fluid" />
+                                        <div class="circle-Image"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 pb-10">
+                            <div class="mb-30 aos-init" data-aos="fade-right">
+                                <div class="section-title-2 programNameLength">
+                                    <h2>
+                                        @programDetail.Name
+                                    </h2>
+                                </div>
+                                <div class="about-text programDescriptionLength">
+                                    <p class="mb-5">
+                                        @Html.Raw(programDetail.Description)
+                                
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="call-to-action-btn">
+                                <a href="~/payment/Index?id=1" target="_blank" class="item-btn-phone btn-blue theme-btn">
+                                    <span>Reserve Now</span>
+                                </a>
+                            </div>
+                        </div>
+                    }
+              }
+            </div>
+        </div>
+    </section>
+    <section class="fancybox-layout1  bg-overlay-primary-gradient pt-120 pb-120  ">       
+        <div class="container d-flex align-items-center">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <h2 class="item-title text-center ">Do you need Gut Cleansing?</h2>
+                </div>
+                <div class="col-sm-6 col-lg-3 col-md-4">
+                    <div class="icon-box program">
+                        <img alt="nutritionist" loading="lazy" width="0" height="0"
+                        decoding="async" data-nimg="1" sizes="100vw"
+                        src="~/Assets/starving_12817603.gif"
+                        style="color: transparent; width: auto; height: auto;">
+                        <h4>Indigestion</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 col-md-4">
+                    <div class="icon-box program">
+                        <img alt="nutritionist" loading="lazy" width="0" height="0"
+                        decoding="async" data-nimg="1" sizes="100vw"
+                        src="~/Assets/obesity_11292175.gif"
+                        style="color: transparent; width: auto; height: auto;">
+                        <h4>Bloating</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 col-md-4">
+                    <div class="icon-box program">
+                        <img alt="nutritionist" loading="lazy" width="0" height="0"
+                        decoding="async" data-nimg="1" sizes="100vw"
+                        src="~/Assets/gut-microbiota_12034683.gif"
+                        style="color: transparent; width: auto; height: auto;">
+                        <h4>IBS</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 col-md-4">
+                    <div class="icon-box program">
+                        <img alt="nutritionist" loading="lazy" width="0" height="0"
+                        decoding="async" data-nimg="1" sizes="100vw"
+                        src="~/Assets/stomach_12034700.gif"
+                        style="color: transparent; width: auto; height: auto;">
+                        <h4>Acid Reflux</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 col-md-4">
+                    <div class="icon-box program">
+                        <img alt="nutritionist" loading="lazy" width="0" height="0"
+                        decoding="async" data-nimg="1" sizes="100vw"
+                        src="~/Assets/witness_15578367.gif"
+                        style="color: transparent; width: auto; height: auto;">
+                        <h4>Belching</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 col-md-4">
+                    <div class="icon-box program">
+                        <img alt="nutritionist" loading="lazy" width="0" height="0"
+                        decoding="async" data-nimg="1" sizes="100vw"
+                        src="~/Assets/insomnia_18633648.gif"
+                        style="color: transparent; width: auto; height: auto;">
+                        <h4>Brain Fog / Fatigue</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 col-md-4">
+                    <div class="icon-box program">
+                        <img alt="nutritionist" loading="lazy" width="0" height="0"
+                        decoding="async" data-nimg="1" sizes="100vw"
+                        src="~/Assets/conflict_12340750.gif"
+                        style="color: transparent; width: auto; height: auto;">
+                        <h4>Anxiety / Mood Swings</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 col-md-4">
+                    <div class="icon-box program">
+                        <img alt="nutritionist" loading="lazy" width="0" height="0"
+                        decoding="async" data-nimg="1" sizes="100vw"
+                        src="~/Assets/hormonal.jpeg"
+                        style="color: transparent; width: auto; height: auto;">
+                        <h4>PCOS</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-area pt-100 pb-100" id="aboutus">
+        <div class="container">
+            @if (Model.ProgramDetail != null)
+            {
+                var programDetail = Model.ProgramDetail.FirstOrDefault(pd => pd.Id == 2);
+                @if (programDetail != null)
+                {
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="about-left pos-rel mb-30 aos-init" data-aos="fade-up">
+                                <div class="about-author d-flex align-items-center">
+                                    <div class="about-author-Image">
+                                        <img alt="aboutus" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" sizes="100vw"
+                                             src="@programDetail.ImageUrl"
+                                             style="color: transparent; width: auto; height: auto;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="about-right pt-15 mb-30 aos-init" data-aos="fade-right">
+                                <div class="section-title-2 mb-20 programNameLength">
+                                    <h2>@programDetail.Name</h2>
+                                </div>
+                                <div class="about-text pr-5 programDLength">
+                                    <ul class="list-item" id="programDetailImg">
+                                        <li>
+                                                @Html.Raw(programDetail.Description)
+                                            
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </section>
+
+    <section class="fancybox-layout1 bg-overlay bg-overlay-primary-gradient pt-120 pb-120 bg-Image otherserv services-tre services-project">
+        <div class="container">
+            <div class="row justify-content-end mb-30">
+                <div class="col-sm-12 col-md-12 col-lg-8 col-xl-12 aos-init" data-aos="fade-up"></div>
+            </div>
+            <div class="row">
+                @if (Model.ProgramDetail != null && Model.ProgramDetail.Any())
+                {
+                    // Fetching program details with Id 3 and Id 4 from the list
+                    var programDetail3 = Model.ProgramDetail.FirstOrDefault(pd => pd.Id == 3);
+                    var programDetail4 = Model.ProgramDetail.FirstOrDefault(pd => pd.Id == 4);
+
+                    // Rendering first programDetail (Id == 3)
+                    @if (programDetail3 != null)
+                    {
+                        <div class="col-sm-6 col-d-4 col-lg-6 col-md-12" id="houroperation">
+                            <div class="fancybox-item weekbx aos-init" data-aos="fade-up">
+                                <div class="fancybox-body d-flex text">
+                                    <div class="weeklist programDescriptionLength">
+                                        <h4 class="fancybox-title">
+                                            @programDetail3.Name
+                                            </h4>
+                                        <p class="box-text">
+                                            @Html.Raw(programDetail3.Description)
+                                          
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    // Rendering second programDetail (Id == 4)
+                    @if (programDetail4 != null)
+                    {
+                        <div class="col-sm-6 col-d-4 col-lg-6 col-md-12">
+                            <div class="fancybox-item weekbx aos-init" data-aos="fade-up">
+                                <div class="fancybox-body d-flex text">
+                                    <div class="weeklist programDescriptionLength">
+                                        <h4 class="fancybox-title">
+                                            @programDetail4.Name
+                                        </h4>
+                                        <p class="box-text">
+                                            @Html.Raw(programDetail4.Description)
+                                       
+                                    
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            @if (Model.ProgramDetail != null && Model.ProgramDetail.Any())
+            {
+                var programDetail = Model.ProgramDetail.FirstOrDefault(pd => pd.Id == 5);
+                @if (programDetail != null)
+                {
+                    <div class="row pt-50 main-pay paysection">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <h3 class="text-center programNameLength">
+                                @programDetail.Name
+                            </h3>
+                            <div class="call-to-action-btn paybtn">
+                                <a href="@Url.Content("~/payment/Index?id=1")"
+                                   target="_blank" class="item-btn-phone btn-blue theme-btn">
+                                    <span>Reserve Now</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </section>
+
+
+    <section class="banner-wrap-layout1 parallaxie" id="support" style="height:460px">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                @foreach (var (testimonial, index) in Model.TestimonialPrograms.Select((testimonial, index) => (testimonial, index)))
+                {
+                    <div class="carousel-item @(index == 0 ? "active" : "")">
+                        <div class="banner-box-layout1 programDescriptionLength" data-aos="fade-up">
+                            <h2 class="item-title">
+                                @testimonial.Name
+                            </h2>
+                            <p>
+                                @Html.Raw(testimonial.Description)
+                            </p>
+                            <p><b>@testimonial.CreatedBy</b></p>
+                        </div>
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="fa fa-chevron-circle-left" style="font-size:45px;" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="fa fa-chevron-circle-right" style="font-size:45px;" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+    <section class="call-to-action-wrap-layout4">
+        <div class="item-Image"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                    <div class="call-to-action-box-layout4 aos-init" data-aos="zoom-in">
+                        <h2 class="item-title">
+                            Explore Our Natural Gut Cleanse Programs and Improve Your Digestive
+                            Health! Begin your journey to optimal digestive wellness
+                        </h2>
+                        <div class="call-to-action-btn">
+                            <a class="btn-red theme-btn" href="/programs">
+                                <span>
+                                    OUR
+                                    PROGRAMS
+                                </span>
+                            </a><span class="or">&nbsp; &nbsp;or&nbsp;&nbsp;</span> <a href="https://wa.me/9779994422" target="_blank"
+                                                                                       class="item-btn-phone btn-blue theme-btn"><span>Call: 9779994422 </span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    <script>
+        $('#programDetailImg img').addClass('fa-spin');
+        </script>
+        }

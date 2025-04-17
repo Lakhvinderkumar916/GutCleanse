@@ -1,0 +1,296 @@
+﻿@model Gut_Cleanse.Model.ProgramModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .g-3, .gy-3 {
+        --bs-gutter-y: 1rem;
+    }
+
+    .gj-textbox-md {
+        line-height: 1.375rem;
+        padding: calc(.543rem - var(--bs-border-width)) calc(.9375rem - var(--bs-border-width))
+    }
+
+    .gj-datepicker-md [role=right-icon] {
+        top: 6px;
+    }
+
+    .panel {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .ck-editor__editable {
+        height: 200px;
+        width: 100%;
+    }
+
+    .panel-row {
+        margin-bottom: 20px;
+    }
+
+        .panel-row .col-md-12 {
+            padding: 10px;
+        }
+
+    .submit-btn {
+        text-align: center;
+        margin-top: 60px;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        padding: 10px;
+    }
+
+    .name-description-row {
+        margin-bottom: 20px;
+    }
+
+    .panel-row .col-md-12 {
+        padding-bottom: 10px;
+    }
+
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                @using (Html.BeginForm("Create", "Programs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(x => x.Id)
+
+                    <div class="row g-3 needs-validation">
+                        <!-- Program Info Section -->
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <h5>Panel 1: Program Information</h5> <!-- Panel number -->
+                                <!-- Program Name Field -->
+                                <div class="row panel-row name-description-row">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(x => x.Name, new { @class = "form-label required" })
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(x => x.Name)
+                                    </div>
+                                </div>
+                                <!-- Program Description Field -->
+                                <div class="row panel-row name-description-row">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(x => x.Description, new { @class = "form-label required" })
+                                        @*     @if (!string.IsNullOrEmpty(Model.Description))  
+                                        { *@
+                                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", required = "required", @id = "DescriptionProgrammInfo" })
+                                        @Html.ValidationMessageFor(x => x.Description)
+                                        @*       } *@
+                                    </div>
+                                </div>
+
+                                <!-- Program Start Date Field -->
+                                <div class="row panel-row">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.StartDate, new { @class = "form-label" })
+                                        @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control datePicker", id = "startDate" })
+                                    </div>
+                                    <!-- Program End Date Field -->
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.EndDate, new { @class = "form-label" })
+                                        @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control datePicker", id = "endDate" })
+                                    </div>
+                                    <!-- Program Amount Field -->
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.Amount, new { @class = "form-label required" })
+                                        @Html.TextBoxFor(x => x.Amount, new { @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(x => x.Amount)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Program Detail Section -->
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <h5>Panel 2: Program Details</h5> <!-- Panel number -->
+                                <div id="programDetailsContainer">
+                                    @for (int i = 0; i < (Model.ProgramDetail?.Count ?? 0); i++)
+                                    {
+                                        <div class="row panel-row">
+                                            @Html.HiddenFor(x => x.ProgramDetail[i].Id)
+
+
+                                            <div class="col-md-12">
+                                                @Html.LabelFor(x => x.ProgramDetail[i].Name, new { @class = "form-label" })
+                                                @Html.TextAreaFor(x => x.ProgramDetail[i].Name, new { @class = "form-control" })
+                                            </div>
+
+                                            <!-- ProgramDetail Description Field (Below Name) -->
+                                            <div class="col-md-12">
+                                                @Html.LabelFor(x => x.ProgramDetail[i].Description, new { @class = "form-label" })
+                                                @if (!string.IsNullOrEmpty(Model.ProgramDetail[i].Description))
+                                                {
+                                                    @Html.TextAreaFor(x => x.ProgramDetail[i].Description, new { @class = "form-control", @id = "Description_" + i })
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonials Section -->
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <h5>Panel 3: Testimonials</h5> <!-- Panel number -->
+                                <div id="testimonialsContainer">
+                                    @for (int i = 0; i < Model.TestimonialPrograms.Count; i++)
+                                    {
+                                        Model.Count = i;
+                                        //Model.TestimonialPrograms.Add(Model.TestimonialPrograms[i]);
+                                        @Html.Partial("~/Views/Programs/Shared/_testimonial.cshtml", Model)
+                                    }
+
+                                </div>
+                            </div>
+                            <a onclick="addTestimonial()" class="add-testimonial-btn">
+                                <i style="color:green;float:right;font-size:35px;" class="bx bx-plus-circle"></i>
+                            </a>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="col-md-12 submit-btn">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Ensure CKEditor script is included -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
+    <script>
+        // Initialize CKEditor for each ProgramDetail Description dynamically
+        @for (int i = 0; i < (Model.ProgramDetail?.Count ?? 0); i++)
+        {
+            <text>
+                @if (!string.IsNullOrEmpty(Model.ProgramDetail[i].Description))
+                {
+                    <text>
+                                        ClassicEditor
+                                            .create(document.querySelector('#Description_@i'))
+                                            .catch(error => {
+                                                console.error(error);
+                                            });
+                    </text>
+                }
+            </text>
+        }
+
+        // Initialize CKEditor for each Testimonial Description dynamically
+        @for (int i = 0; i < (Model.TestimonialPrograms?.Count ?? 0); i++)
+        {
+            <text>
+                @if (!string.IsNullOrEmpty(Model.TestimonialPrograms[i].Description))
+                {
+                    <text>
+                                        ClassicEditor
+                                            .create(document.querySelector('#TestimonialDescription_@i'))
+                                            .catch(error => {
+                                                console.error(error);
+                                            });
+                    </text>
+                }
+            </text>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <text>
+                            ClassicEditor
+                                .create(document.querySelector('#DescriptionProgrammInfo'))
+                                .catch(error => {
+                                    console.error(error);
+                                });
+            </text>
+        }
+
+            // Initialize date picker for the Start Date field
+            $('#startDate').datepicker({
+                format: 'mm/dd/yyyy',  // You can change the format to your desired one
+                autoclose: true
+            });
+
+            // Initialize date picker for the End Date field
+            $('#endDate').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+        // function deleteTestimonial(testimonialIndex){
+        //     debugger
+        // $('#deleteTestimonial_'+testimonialIndex).hide();
+        // $('#Testimonial_IsDeleted_'+testimonialIndex).val('true');
+        // }
+
+         function deleteTestimonial(testimonialIndex) {
+
+            $('#deleteTestimonial_' + testimonialIndex).hide();
+            var testimonialId = $('#Testimonial_Id_' + testimonialIndex).val();
+            if (!testimonialId) {
+                toastr.error("Testimonial ID is not valid.");
+                return;
+            }
+
+            $.ajax({
+                url: "/Programs/DeleteTestimonials",
+                type: 'POST',
+                data: {
+                    testimonialId: testimonialId,
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('#testimonial_' + testimonialIndex).remove();
+                        toastr.success("Testimonial deleted successfully!");
+                    } else {
+                        toastr.error("Error deleting testimonial: " + response.error);
+                    }
+                },
+                error: function () {
+                        toastr.error("Oops! something went wrong");
+                    }
+            });
+
+            return false;
+        }
+
+        function addTestimonial() {
+            var rowCount = $('#testimonialsContainer .testimonial-panel').length;
+            $.ajax({
+                url: "/Programs/AddTestimonial",
+                type: "POST",
+                data: { rowCount: rowCount },
+                success: function (response) {
+                    $('#testimonialsContainer').append(response);
+                },
+               error: function () {
+                        toastr.error("Oops! something went wrong");
+                    }
+            });
+        }
+
+    </script>
+}
